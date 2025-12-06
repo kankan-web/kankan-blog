@@ -1,11 +1,15 @@
 ---
+// 最底层，提供基础HTML结构和全局样式
 import Header from "@component/common/Header.astro";
+// https://docs.astro.build/zh-cn/guides/markdown-content/#frontmatter-layout-%E5%B1%9E%E6%80%A7
+// https://docs.astro.build/zh-cn/reference/api-reference/#props
+const { title, description } = Astro.props.frontmatter || Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <Header />
-  <body>
+  <Header title={title} description={description} />
+  <body class="h-dvh w-dvw">
     <slot />
   </body>
 </html>

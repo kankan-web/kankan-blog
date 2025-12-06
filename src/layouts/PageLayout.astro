@@ -1,0 +1,18 @@
+---
+// 中间层，用于普通页面，基于layout.astro进行封装
+import Layout from "@layouts/Layout.astro";
+const { title, description } = Astro.props.frontmatter || Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <main class="flex min-h-[100dvh]">
+    <aside
+      class="h-screen w-60 min-w-60 flex-col border-r bg-zinc-50 lg:flex xl:w-72"
+    >
+      侧边栏
+    </aside>
+    <div class="flex flex-1">
+      <slot />
+    </div>
+  </main>
+</Layout>

@@ -1,7 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { NavigationInfo } from "@constant";
 ---
 
-<Layout>
-	我是导航站
+<Layout title={NavigationInfo.title} description={NavigationInfo.description}>
+  我是导航站
 </Layout>
