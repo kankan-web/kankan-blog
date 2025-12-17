@@ -1,0 +1,64 @@
+---
+import { onlineUrl } from "@constant";
+import { Image } from "astro:assets";
+
+const isCurrentPage = (url: string) => {
+  const pathname = Astro.url.pathname;
+  console.log("pathname", pathname);
+  if (url === pathname) return true;
+  if (pathname.includes(url) && url !== "/") return true;
+  return false;
+};
+---
+
+<nav class="flex flex-col gap-1">
+  {
+    onlineUrl.map((menu) => (
+      <a
+        href={menu.href}
+        class="group flex items-center justify-between rounded-lg p-2"
+        class:list={[
+          {
+            "bg-black text-white": isCurrentPage(menu.href),
+            "hover:bg-gray-200": !isCurrentPage(menu.href),
+          },
+        ]}
+      >
+        <span class="flex items-center">
+          <span class="h-4 w-4">
+            <Image
+              class:list={[
+                "aspect-square h-full w-full",
+                {
+                  // 当前页面时，反色图标，让描边变为白色
+                  invert: isCurrentPage(menu.href),
+                },
+              ]}
+              width={10}
+              height={10}
+              src={menu.icon}
+              alt={`menu icon ${menu.name}`}
+            />
+          </span>
+          <span class="ml-2 font-medium"> {menu.name}</span>
+        </span>
+
+        <span class="h-4 w-4">
+          <Image
+            class:list={[
+              "aspect-square h-full w-full",
+              {
+                // 当前页面时，反色图标，让描边变为白色
+                invert: isCurrentPage(menu.href),
+              },
+            ]}
+            width={10}
+            height={10}
+            src={menu.icon}
+            alt={`menu icon ${menu.name}`}
+          />
+        </span>
+      </a>
+    ))
+  }
+</nav>

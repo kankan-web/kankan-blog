@@ -1,6 +1,10 @@
 ---
 // 中间层，用于普通页面，基于layout.astro进行封装
 import Layout from "@layouts/Layout.astro";
+import SideMenu from "@component/common/SideMenu.astro";
+import SideInfo from "@component/common/SideInfo.astro";
+import SideOnline from "@component/common/SideOnline.astro";
+
 const { title, description } = Astro.props.frontmatter || Astro.props;
 ---
 
@@ -9,7 +13,17 @@ const { title, description } = Astro.props.frontmatter || Astro.props;
     <aside
       class="h-screen w-60 min-w-60 flex-col border-r bg-zinc-50 lg:flex xl:w-72"
     >
-      侧边栏
+      <div class="scrollbar-hidden h-full overflow-y-auto p-3">
+        <SideInfo />
+        <SideMenu />
+        <div class="bg-border my-5 h-[1px] w-full shrink-0 bg-gray-200"></div>
+        <div
+          class="mb-2 px-2 text-xs leading-relaxed font-medium text-gray-600"
+        >
+          Online
+        </div>
+        <SideOnline />
+      </div>
     </aside>
     <div class="flex flex-1">
       <slot />

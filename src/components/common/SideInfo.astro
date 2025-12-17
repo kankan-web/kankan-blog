@@ -1,0 +1,21 @@
+---
+import { sideInfo } from "@constant";
+import { Image } from "astro:assets";
+---
+
+<div class="mb-4 flex flex-nowrap items-center gap-2">
+  <span
+    class="relative flex h-10 w-10 shrink-0 items-center overflow-hidden rounded-full"
+  >
+    <Image
+      class="aspect-square h-full w-full"
+      src={sideInfo.avatar}
+      alt={`Avatar of ${sideInfo.title}`}
+      srcset=""
+    />
+  </span>
+  <div>
+    <h1 class="font-semibold tracking-tight">{sideInfo.title}</h1>
+    <p class="text-gray-600">{sideInfo.desc}</p>
+  </div>
+</div>
